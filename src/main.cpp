@@ -1,4 +1,7 @@
 #include "main.hpp"
+#include "./extern/includes/beatsaber-hook/shared/utils/hooking.hpp"
+#include "./extern/includes/beatsaber-hook/shared/utils/logging.hpp"
+#include "test.cpp"
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
@@ -30,6 +33,8 @@ extern "C" void load() {
     il2cpp_functions::Init();
 
     getLogger().info("Installing hooks...");
-    // Install our hooks (none defined yet)
+
+    INSTALL_HOOK(getLogger(), MainMenuUIHook)
+
     getLogger().info("Installed all hooks!");
 }
