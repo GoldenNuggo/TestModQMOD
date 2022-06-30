@@ -1,15 +1,15 @@
 {
 	"_QPVersion": "0.1.1",
-	"name": "Colour Changer",
-	"id": "ColourChanger",
+	"name": "Test Mod",
+	"id": "TestMod",
 	"author": "Nuggo",
-	"version": "0.1.0",
+	"version": "0.0.2",
 	"packageId": "com.beatgames.beatsaber",
 	"packageVersion": "1.21.0",
 	"description": "Test",
 	"dependencies": [],
 	"modFiles": [
-		"libColourChanger.so"
+		"libTestMod.so"
 	],
 	"libraryFiles": [
 		"libbeatsaber-hook_3_8_5.so"

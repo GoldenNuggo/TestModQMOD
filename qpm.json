@@ -2,12 +2,12 @@
   "sharedDir": "shared",
   "dependenciesDir": "extern",
   "info": {
-    "name": "Colour Changer",
-    "id": "ColourChanger",
+    "name": "Test Mod",
+    "id": "Testmod",
     "version": "0.1.0",
     "url": null,
     "additionalData": {
-      "overrideSoName": "libColourChanger.so"
+      "overrideSoName": "libTestMod.so"
     }
   },
   "dependencies": [
