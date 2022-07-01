@@ -1,43 +1,9 @@
 #include "main.hpp"
 #include "./extern/includes/beatsaber-hook/shared/utils/hooking.hpp"
 #include "./extern/includes/beatsaber-hook/shared/utils/logging.hpp"
-#include "./include/hooks.hpp"
+#include "hooks.hpp"
 #include "modloader/shared/modloader.hpp"
-
 //                                           MAKE 1.17.1 PORT ASAP
-// All Used Includes For Promo Button
-#include "./include/hooks.hpp"
-#include "GlobalNamespace/MainMenuViewController.hpp"
-#include "UnityEngine/UI/Button.hpp"
-#include "UnityEngine/GameObject.hpp"
-#include "HMUI/CurvedTextMeshPro.hpp"
-#include "GlobalNamespace/DlcPromoPanelModel.hpp"
-
-
-// DISABLES PROMOTIONS BUTTON
-MAKE_HOOK_MATCH(promoButton, &GlobalNamespace::MainMenuViewController::DidActivate, void, GlobalNamespace::MainMenuViewController *self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
-
-    promoButton(self, firstActivation, addedToHierarchy, screenSystemEnabling);
-
-    UnityEngine::UI::Button *promoMenuButton = self->musicPackPromoButton;
-    UnityEngine::GameObject *promoObject = promoMenuButton->get_gameObject();
-    promoObject->SetActive(false);
-}
-
-// CHANGES SOLO BUTTON TEXT TO "SKILL ISSUE"
-MAKE_HOOK_MATCH(soloButtonText, &GlobalNamespace::MainMenuViewController::DidActivate, void, GlobalNamespace::MainMenuViewController *self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
-    
-soloButtonText(self, firstActivation, addedToHierarchy, screenSystemEnabling);
-
-    UnityEngine::UI::Button *soloMenuButton = self->soloButton;
-    UnityEngine::GameObject *gameObject = soloMenuButton->get_gameObject();
-    HMUI::CurvedTextMeshPro *soloMenuText = gameObject->GetComponentInChildren<HMUI::CurvedTextMeshPro *>();
-
-    soloMenuText->SetText("Skill Issue");
-}
-
-
-
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
@@ -68,10 +34,12 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
+    //questui::Register::AutoRegister();
+
     getLogger().info("Installing hooks...");
 
-    INSTALL_HOOK(getLogger(), soloButtonText)
-    INSTALL_HOOK(getLogger(), promoButton)
+   auto& logger = getLogger();
+   Hooks::InstallHooks(logger);
 
     getLogger().info("Installed all hooks!");
 }
