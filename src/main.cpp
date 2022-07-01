@@ -4,6 +4,7 @@
 #include "./include/hooks.hpp"
 #include "modloader/shared/modloader.hpp"
 
+//                                           MAKE 1.17.1 PORT ASAP
 // All Used Includes For Promo Button
 #include "./include/hooks.hpp"
 #include "GlobalNamespace/MainMenuViewController.hpp"
@@ -13,21 +14,17 @@
 #include "GlobalNamespace/DlcPromoPanelModel.hpp"
 
 
+// DISABLES PROMOTIONS BUTTON
 MAKE_HOOK_MATCH(promoButton, &GlobalNamespace::MainMenuViewController::DidActivate, void, GlobalNamespace::MainMenuViewController *self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
 
+    promoButton(self, firstActivation, addedToHierarchy, screenSystemEnabling);
 
     UnityEngine::UI::Button *promoMenuButton = self->musicPackPromoButton;
     UnityEngine::GameObject *promoObject = promoMenuButton->get_gameObject();
     promoObject->SetActive(false);
-
-    //UnityEngine::UI::Button *soloMenuButton = self->soloButton;
-    //UnityEngine::GameObject *gameObject = soloMenuButton->get_gameObject();
-    //HMUI::CurvedTextMeshPro *soloMenuText = gameObject->GetComponentInChildren<HMUI::CurvedTextMeshPro *>();
-
-    // Set the text to "Skill Issue"
-    //soloMenuText->SetText("Skill Issue");
 }
 
+// CHANGES SOLO BUTTON TEXT TO "SKILL ISSUE"
 MAKE_HOOK_MATCH(soloButtonText, &GlobalNamespace::MainMenuViewController::DidActivate, void, GlobalNamespace::MainMenuViewController *self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
     
 soloButtonText(self, firstActivation, addedToHierarchy, screenSystemEnabling);
@@ -38,11 +35,6 @@ soloButtonText(self, firstActivation, addedToHierarchy, screenSystemEnabling);
 
     soloMenuText->SetText("Skill Issue");
 }
-
-
-
-
-
 
 
 
