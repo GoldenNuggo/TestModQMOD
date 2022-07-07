@@ -1,18 +1,44 @@
 {
-	"_QPVersion": "0.1.1",
-	"name": "Test Mod",
-	"id": "TestMod",
-	"author": "Nuggo",
-	"version": "0.0.2",
-	"packageId": "com.beatgames.beatsaber",
-	"packageVersion": "1.21.0",
-	"description": "Test",
-	"dependencies": [],
-	"modFiles": [
-		"libTestMod.so"
-	],
-	"libraryFiles": [
-		"libbeatsaber-hook_3_8_5.so"
-	],
-	"fileCopies": []
+  "_QPVersion": "0.1.1",
+  "name": "Test Mod",
+  "id": "TestMod",
+  "author": "Nuggo",
+  "version": "0.0.3",
+  "packageId": "com.beatgames.beatsaber",
+  "packageVersion": "1.21.0",
+  "description": "Test",
+  "dependencies": [
+    {
+      "version": "^0.15.13",
+      "id": "custom-types",
+      "downloadIfMissing": "https://github.com/sc2ad/Il2CppQuestTypePatching/releases/download/v0.15.13/CustomTypes.qmod"
+    },
+    {
+      "version": "^0.23.1",
+      "id": "codegen",
+      "downloadIfMissing": "https://github.com/sc2ad/BeatSaber-Quest-Codegen/releases/download/v0.23.1/Codegen.qmod"
+    },
+    {
+      "version": "^0.15.4",
+      "id": "questui",
+      "downloadIfMissing": "https://github.com/darknight1050/QuestUI/releases/download/v0.15.4/QuestUI.qmod"
+    }
+  ],
+  "modFiles": [
+    "libTestMod.so"
+  ],
+  "coverImage":[
+    "Nuggo.png"
+  ],
+  "fileCopies": [
+    {
+        "name": "secret-data.json",
+        "destination": "/sdcard/ModData/com.beatgames.beatsaber/Mods/Secret/secret-data.json"
+    }
+],
+  "libraryFiles": [
+    "libquestui.so",
+    "libbeatsaber-hook_3_8_5.so"
+  ],
+  "copyExtensions": []
 }

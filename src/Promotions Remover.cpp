@@ -6,6 +6,7 @@
 
 #include "hooks.hpp"
 
+// MUST ADD BUTTON PLACEMENT FIX TO FILL GAP LEFT BY PROMOTIONS
 MAKE_AUTO_HOOK_MATCH(promoButton, &GlobalNamespace::MainMenuViewController::DidActivate, void, GlobalNamespace::MainMenuViewController *self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
 
     promoButton(self, firstActivation, addedToHierarchy, screenSystemEnabling);

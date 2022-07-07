@@ -3,7 +3,13 @@
 #include "./extern/includes/beatsaber-hook/shared/utils/logging.hpp"
 #include "hooks.hpp"
 #include "modloader/shared/modloader.hpp"
-//                                           MAKE 1.17.1 PORT ASAP
+
+#include "extern/includes/questui/shared/QuestUI.hpp"
+#include "extern/includes/questui/shared/BeatSaberUI.hpp"
+
+using namespace QuestUI;
+
+//                                           MAKE 1.17.1 PORT ASAP // Yeah no, screw 1.17.1 kiddos lmfao
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
@@ -34,12 +40,12 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
-    //questui::Register::AutoRegister();
+    QuestUI::Init();
 
     getLogger().info("Installing hooks...");
 
-   auto& logger = getLogger();
-   Hooks::InstallHooks(logger);
+    auto& logger = getLogger();
+    Hooks::InstallHooks(logger);
 
     getLogger().info("Installed all hooks!");
 }
