@@ -7,7 +7,17 @@
 #include "extern/includes/questui/shared/QuestUI.hpp"
 #include "extern/includes/questui/shared/BeatSaberUI.hpp"
 
-using namespace QuestUI;
+using namespace QuestUI::BeatSaberUI;
+
+void DidActivate(HMUI::ViewController *self, bool firstActivation, bool addedToHeirarchy, bool screenSystemEnabling) {
+
+    if(firstActivation) {
+        
+        UnityEngine::GameObject *container = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
+
+        QuestUI::BeatSaberUI::CreateText(container->get_transform(), "Test Mod");
+    }
+}
 
 //                                           MAKE 1.17.1 PORT ASAP // Yeah no, screw 1.17.1 kiddos lmfao
 
@@ -41,6 +51,7 @@ extern "C" void load() {
     il2cpp_functions::Init();
 
     QuestUI::Init();
+    QuestUI::Register::RegisterMainMenuModSettingsViewController(modInfo, DidActivate);
 
     getLogger().info("Installing hooks...");
 
