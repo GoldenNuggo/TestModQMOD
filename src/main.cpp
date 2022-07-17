@@ -35,7 +35,7 @@ void DidActivate(HMUI::ViewController *self, bool firstActivation, bool addedToH
         QuestUI::BeatSaberUI::CreateText(container->get_transform(), "Test Mod");
 
         QuestUI::BeatSaberUI::CreateClickableText(testContainer->get_transform(), "Test");
-        QuestUI::BeatSaberUI::CreateSliderSetting(testContainer);
+        //QuestUI::BeatSaberUI::CreateSliderSetting(testContainer);
         QuestUI::BeatSaberUI::CreateClickableText(testContainer->get_transform(), "Test2");
     }
 }
