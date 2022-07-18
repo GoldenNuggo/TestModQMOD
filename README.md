@@ -1,6 +1,6 @@
 # Test Mod
 
-This is my mod to screw around and try new things that I'm leaerning before putting into other mods :D
+This is my mod to screw around and try new things that I'm learning before putting into other mods :D
 
 ## Credits
 
