@@ -1,28 +1,19 @@
 #include "main.hpp"
-#include "./extern/includes/beatsaber-hook/shared/utils/hooking.hpp"
-#include "./extern/includes/beatsaber-hook/shared/utils/logging.hpp"
+#include "beatsaber-hook/shared/utils/hooking.hpp"
+#include "beatsaber-hook/shared/utils/logging.hpp"
 #include "hooks.hpp"
 #include "modloader/shared/modloader.hpp"
+#include "questui/shared/QuestUI.hpp"
+#include "questui/shared/BeatSaberUI.hpp"
+#include "UnityEngine/UI/LayoutElement.hpp"
 
-#include "extern/includes/questui/shared/QuestUI.hpp"
-#include "extern/includes/questui/shared/BeatSaberUI.hpp"
+#include "ModConfig.hpp"
 
-//#include "ModConfig.hpp"
-
+using namespace GlobalNamespace;
+using namespace UnityEngine;
 using namespace QuestUI::BeatSaberUI;
 
-//DEFINE_CONFIG(ModConfig);
-
-//getModConfig().VarA.GetValue();
-//getModConfig().VarA.SetValue("Pog");
-
-//UnityEngine::Vector2 vec = getModConfig().VarVector2.GetValue();
-
-//vec = vec + UnityEngine::Vector2(30, 0, 0);
-
-//getModConfig().VarVector2.SetValue(vector);
-
-
+DEFINE_CONFIG(ModConfig);
 
 // CREATES UI BUTTONS
 void DidActivate(HMUI::ViewController *self, bool firstActivation, bool addedToHeirarchy, bool screenSystemEnabling) {
@@ -30,13 +21,30 @@ void DidActivate(HMUI::ViewController *self, bool firstActivation, bool addedToH
     if(firstActivation) {
         
         UnityEngine::GameObject *container = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
-        UnityEngine::GameObject *testContainer = QuestUI::BeatSaberUI::CreateScrollView(self->get_transform()); // CreateSliderSetting
+        UnityEngine::GameObject *testContainer = QuestUI::BeatSaberUI::CreateScrollView(self->get_transform());
 
-        QuestUI::BeatSaberUI::CreateText(container->get_transform(), "Test Mod");
+        QuestUI::BeatSaberUI::CreateUIButton(self->get_transform(), "", UnityEngine::Vector2(30.0f, 0), UnityEngine::Vector2(20.0f, 20.0f), []() {
 
-        QuestUI::BeatSaberUI::CreateClickableText(testContainer->get_transform(), "Test");
-        //QuestUI::BeatSaberUI::CreateSliderSetting(testContainer);
-        QuestUI::BeatSaberUI::CreateClickableText(testContainer->get_transform(), "Test2");
+        });
+
+        QuestUI::BeatSaberUI::CreateText(testContainer->get_transform(), "------------------------------- DLC TEXT -------------------------------");
+        AddConfigValueToggle(testContainer->get_transform(), getModConfig().VarB)->get_gameObject();
+
+
+        QuestUI::BeatSaberUI::CreateText(testContainer->get_transform(), "--------------------------- SOLO BUTTON TEXT ---------------------------");
+        
+        Transform* parent = testContainer->get_transform();
+        auto layout = QuestUI::BeatSaberUI::CreateHorizontalLayoutGroup(parent);  layout->GetComponent<UnityEngine::UI::LayoutElement*>()->set_preferredWidth(60.0f); 
+        layout->set_childControlWidth(true); 
+        auto layoutParent = layout->get_transform();
+
+        auto stringSetting = AddConfigValueStringSetting(layoutParent, getModConfig().VarA);
+
+
+
+
+
+
     }
 }
 
@@ -80,9 +88,9 @@ extern "C" void load() {
     QuestUI::Register::RegisterMainMenuModSettingsViewController(modInfo, DidActivate);
     QuestUI::Register::RegisterModSettingsViewController(modInfo, DidActivate);
 
-    //il2cpp_functions::Init();
+    il2cpp_functions::Init();
 
-    //getModConfig().Init(modInfo);
+    getModConfig().Init(modInfo);
 
     getLogger().info("Installing hooks...");
 

@@ -2,6 +2,7 @@
 #include "UnityEngine/UI/Button.hpp"
 #include "UnityEngine/GameObject.hpp"
 #include "HMUI/CurvedTextMeshPro.hpp"
+#include "ModConfig.hpp"
 
 #include "hooks.hpp"
 
@@ -13,5 +14,5 @@ soloButtonText(self, firstActivation, addedToHierarchy, screenSystemEnabling);
     UnityEngine::GameObject *gameObject = soloMenuButton->get_gameObject();
     HMUI::CurvedTextMeshPro *soloMenuText = gameObject->GetComponentInChildren<HMUI::CurvedTextMeshPro *>();
 
-    soloMenuText->SetText("Skill Issue");
+    soloMenuText->SetText(getModConfig().VarA.GetValue());
 }
