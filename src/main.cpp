@@ -20,25 +20,27 @@ void DidActivate(HMUI::ViewController *self, bool firstActivation, bool addedToH
 
     if(firstActivation) {
         
-        UnityEngine::GameObject *container = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
-        UnityEngine::GameObject *testContainer = QuestUI::BeatSaberUI::CreateScrollView(self->get_transform());
+        //UnityEngine::GameObject *container = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
+        UnityEngine::GameObject *mainContainer = QuestUI::BeatSaberUI::CreateScrollView(self->get_transform());
 
-        QuestUI::BeatSaberUI::CreateUIButton(self->get_transform(), "", UnityEngine::Vector2(30.0f, 0), UnityEngine::Vector2(20.0f, 20.0f), []() {
+        // QuestUI::BeatSaberUI::CreateUIButton(self->get_transform(), "Test", UnityEngine::Vector2(-20.0f, 20.0f), UnityEngine::Vector2(20.0f, 10.0f), []() {});
 
-        });
-
-        QuestUI::BeatSaberUI::CreateText(testContainer->get_transform(), "------------------------------- DLC TEXT -------------------------------");
-        AddConfigValueToggle(testContainer->get_transform(), getModConfig().VarB)->get_gameObject();
-
-
-        QuestUI::BeatSaberUI::CreateText(testContainer->get_transform(), "--------------------------- SOLO BUTTON TEXT ---------------------------");
         
-        Transform* parent = testContainer->get_transform();
+
+        QuestUI::BeatSaberUI::CreateText(mainContainer->get_transform(), "------------------------------- DLC MENU -------------------------------");
+
+        AddConfigValueToggle(mainContainer->get_transform(), getModConfig().DLCRemover)->get_gameObject();
+
+        QuestUI::BeatSaberUI::CreateText(mainContainer->get_transform(), "--------------------------- SOLO BUTTON TEXT ---------------------------");
+        
+        AddConfigValueToggle(mainContainer->get_transform(), getModConfig().SoloRemover)->get_gameObject(); // Removes Solo Button
+
+        Transform* parent = mainContainer->get_transform();
         auto layout = QuestUI::BeatSaberUI::CreateHorizontalLayoutGroup(parent);  layout->GetComponent<UnityEngine::UI::LayoutElement*>()->set_preferredWidth(60.0f); 
         layout->set_childControlWidth(true); 
         auto layoutParent = layout->get_transform();
 
-        auto stringSetting = AddConfigValueStringSetting(layoutParent, getModConfig().VarA);
+        auto stringSetting = AddConfigValueStringSetting(layoutParent, getModConfig().SoloText); // Creates Input Field
 
 
 

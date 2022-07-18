@@ -16,16 +16,11 @@ MAKE_AUTO_HOOK_MATCH(promoButton, &GlobalNamespace::MainMenuViewController::DidA
     UnityEngine::UI::Button *promoMenuButton = self->musicPackPromoButton;
     UnityEngine::GameObject *promoObject = promoMenuButton->get_gameObject();
 
-    if (getModConfig().VarB.GetValue() == true) {
-        
-        
-        promoObject->SetActive(true);
-    }
-
-    else {
+    if (getModConfig().DLCRemover.GetValue() == true) {
         promoObject->SetActive(false);
     }
 
-    
-    
+    else {
+        promoObject->SetActive(true);
+    }
 }

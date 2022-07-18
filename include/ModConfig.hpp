@@ -4,14 +4,14 @@
 
 DECLARE_CONFIG(ModConfig,
 
-    CONFIG_VALUE(SoloText, std::string, "Solo Button Text", "SOLO!");
-    CONFIG_VALUE(VarA, std::string, "Name", "Solo!");
-    CONFIG_VALUE(VarB, bool, "Enable DLC Screen", true);  
+    CONFIG_VALUE(SoloText, std::string, "Name", "Solo!");
+    CONFIG_VALUE(DLCRemover, bool, "Disable DLC Screen", true);  
+    CONFIG_VALUE(SoloRemover, bool, "Remove the Solo Button (Why)", false);
  
     CONFIG_INIT_FUNCTION(
     
         CONFIG_INIT_VALUE(SoloText);
-        CONFIG_INIT_VALUE(VarA);
-        CONFIG_INIT_VALUE(VarB);
+        CONFIG_INIT_VALUE(DLCRemover);
+        CONFIG_INIT_VALUE(SoloRemover);
     )
 )
