@@ -31,12 +31,15 @@ void DidActivate(HMUI::ViewController *self, bool firstActivation, bool addedToH
 
         AddConfigValueToggle(mainContainer->get_transform(), getModConfig().DLCRemover)->get_gameObject();
 
-        QuestUI::BeatSaberUI::CreateText(mainContainer->get_transform(), "--------------------------- SOLO BUTTON TEXT ---------------------------");
+        QuestUI::BeatSaberUI::CreateText(mainContainer->get_transform(), "--------------------------- SOLO BUTTON MENU ---------------------------");
         
         AddConfigValueToggle(mainContainer->get_transform(), getModConfig().SoloRemover)->get_gameObject(); // Removes Solo Button
 
+
+        AddConfigValueToggle(mainContainer->get_transform(), getModConfig().SoloTextSwitch)->get_gameObject();
+
         Transform* parent = mainContainer->get_transform();
-        auto layout = QuestUI::BeatSaberUI::CreateHorizontalLayoutGroup(parent);  layout->GetComponent<UnityEngine::UI::LayoutElement*>()->set_preferredWidth(60.0f); 
+        auto layout = QuestUI::BeatSaberUI::CreateHorizontalLayoutGroup(parent);  layout->GetComponent<UnityEngine::UI::LayoutElement *>()->set_preferredWidth(60.0f); 
         layout->set_childControlWidth(true); 
         auto layoutParent = layout->get_transform();
 

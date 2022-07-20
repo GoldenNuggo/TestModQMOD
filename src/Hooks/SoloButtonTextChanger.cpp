@@ -14,5 +14,12 @@ soloButtonText(self, firstActivation, addedToHierarchy, screenSystemEnabling);
     UnityEngine::GameObject *gameObject = soloMenuButton->get_gameObject();
     HMUI::CurvedTextMeshPro *soloMenuText = gameObject->GetComponentInChildren<HMUI::CurvedTextMeshPro *>();
 
-    soloMenuText->SetText(getModConfig().SoloText.GetValue());
+    if (getModConfig().SoloTextSwitch.GetValue() == true) {
+        soloMenuText->SetText(getModConfig().SoloText.GetValue());
+    }
+
+    else {
+        soloMenuText->SetText("solo");
+    }
+    
 }
